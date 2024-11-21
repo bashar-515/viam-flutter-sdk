@@ -21,6 +21,13 @@ class ResourceManager {
 
   /// Get a resource with the given [ResourceName]
   T getResource<T>(ResourceName name) {
+    for (var entry in resources.entries) {
+      if (entry.key.name == name.name && name.name == 'event-manager') {
+        return entry.value as T;
+      } else if (entry.key.name == name.name && name.name == 'cam1') {
+        return entry.value as T;
+      }
+    }
     final resource = resources[name];
     if (resource == null) throw Exception('Resource not found in manager');
     return resource as T;
